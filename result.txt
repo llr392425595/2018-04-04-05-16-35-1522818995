@@ -1,7 +1,18 @@
-mysql> SELECT * FROM Employee WHERE name like "%n%" AND `salary` > 6000;
+
+practice-1:mysql> SELECT * FROM Employee WHERE name like "%n%" AND `salary` > 6000;
 +----+------------+------+----------+-----------+--------+
 | id | name       | age  | gender   | companyId | salary |
 +----+------------+------+----------+-----------+--------+
 |  1 | 'xiaohong' |   19 | 'female' |         1 |   7000 |
 +----+------------+------+----------+-----------+--------+
-1 row in set (0.00 sec)
+
+practice-2:mysql> select companyName, name from
+(select companyName, name, max(salary) from Company left join Employee on Company.id = Employee.companyId group by companyId) as t ;
++-------------+------------+
+| companyName | name       |
++-------------+------------+
+| 'baidu'     | 'xiaoming' |
+| 'alibaba'   | 'xiaohong' |
+| 'tengxun'   | 'xiaozhi'  |
++-------------+------------+
+
