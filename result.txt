@@ -16,3 +16,14 @@ practice-2:mysql> select companyName, name from
 | 'tengxun'   | 'xiaozhi'  |
 +-------------+------------+
 
+
+practice-2:mysql> select companyName, max(avgSalary) as avgSalary from
+                  (select companyName, avg(salary) as avgSalary
+                  from Company left join Employee
+                  on Company.id = Employee.companyId
+                  group by companyId) as t;
++-------------+-----------+
+| companyName | avgSalary |
++-------------+-----------+
+| 'baidu'     | 8000.0000 |
++-------------+-----------+
